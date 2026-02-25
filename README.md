@@ -59,7 +59,6 @@ Downloads:
 
 ### Build Steps
 
-```bash
 cd build
 
 cmake .. -G "Ninja" ^
