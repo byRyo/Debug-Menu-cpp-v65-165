@@ -2,6 +2,7 @@
 
 Custom debug menu developed for Brawl Stars v65.165 (arm64-v8a).  
 The framework is written entirely in C++ and demonstrates how in-game debug overlays and internal tooling can be implemented using low-level techniques.
+Yes I called it Heavy Hook because the apk is called heavy brawl.
 
 ---
 
