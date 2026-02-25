@@ -1,18 +1,22 @@
 #pragma once
-#include "position.hpp"
+#include <cstdint>
 
 namespace hooks::debug_menu {
-    static constexpr int visible = 78;
+
+    inline void setVisible(void* p, bool state) {
+        if (!p) return;
+
+        *reinterpret_cast<int*>(
+            reinterpret_cast<uint8_t*>(p) + 8
+        ) = state ? 1 : 0;
+    }
 
     inline void hideObject(void* p) {
-        if (!p) return;
-        *ptr(p, visible) = 0;
-        setXY(p, 9999.f, 9999.f);
+        setVisible(p, false);
     }
 
-    inline void showObject(void* p, float x = 0.f, float y = 0.f) {
-        if (!p) return;
-        setXY(p, x, y);
-        *ptr(p, visible) = 1;
+    inline void showObject(void* p) {
+        setVisible(p, true);
     }
+
 }
