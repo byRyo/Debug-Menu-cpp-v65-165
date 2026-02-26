@@ -13,19 +13,23 @@
 #define LOG_TAG "Heavy-Hook"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 
-namespace hooks::debug_menu {
-    inline void* stagePtr() {
+namespace hooks::debug_menu 
+{
+    inline void* stagePtr() 
+    {
         return *reinterpret_cast<void**>(libg::addresses::stageInstance);
     }
 
-    inline void setMovieClip(void* instance, void* movieClip) {
+    inline void setMovieClip(void* instance, void* movieClip) 
+    {
         using fn_t = void(*)(void*, void*, bool);
         void** vtable = *reinterpret_cast<void***>(instance);
         auto fn = reinterpret_cast<fn_t>(vtable[352 / 8]);
         fn(instance, movieClip, true);
     }
 
-    inline Category createCategory(const char* name) {
+    inline Category createCategory(const char* name) 
+    {
         void* ins = malloc(544);
         libg::functions::GameButton_GameButton(ins);
         void* mc = libg::functions::StringTable_getMovieClip("sc/debug.sc", "debug_menu_category");
@@ -34,7 +38,8 @@ namespace hooks::debug_menu {
         return { ins, name };
     }
 
-    inline Button createButton(const char* name, const char* cat) {
+    inline Button createButton(const char* name, const char* cat) 
+    {
         void* ins = malloc(544);
         libg::functions::GameButton_GameButton(ins);
         void* mc = libg::functions::StringTable_getMovieClip("sc/debug.sc", "debug_menu_item");
@@ -43,7 +48,8 @@ namespace hooks::debug_menu {
         return { ins, cat };
     }
 
-    inline void createDButton() {
+    inline void createDButton() 
+    {
         if (g_dButton) return;
         g_dButton = malloc(544);
         libg::functions::GameButton_GameButton(g_dButton);
@@ -55,4 +61,5 @@ namespace hooks::debug_menu {
         *ptr(g_dButton, visible) = 1;
         libg::functions::Stage_addChild(stagePtr(), g_dButton);
     }
+
 }
