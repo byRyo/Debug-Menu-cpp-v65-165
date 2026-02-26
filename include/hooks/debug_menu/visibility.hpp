@@ -1,9 +1,10 @@
 #pragma once
 #include <cstdint>
 
-namespace hooks::debug_menu {
-
-    inline void setVisible(void* p, bool state) {
+namespace hooks::debug_menu 
+{
+    inline void setVisible(void* p, bool state) 
+    {
         if (!p) return;
 
         *reinterpret_cast<int*>(
@@ -11,12 +12,13 @@ namespace hooks::debug_menu {
         ) = state ? 1 : 0;
     }
 
-    inline void hideObject(void* p) {
+    inline void hideObject(void* p) 
+    {
         setVisible(p, false);
     }
 
-    inline void showObject(void* p) {
+    inline void showObject(void* p) 
+    {
         setVisible(p, true);
     }
-
 }
