@@ -2,9 +2,16 @@
 #include <vector>
 #include <string>
 
-namespace hooks::debug_menu {
-    struct Button { void* ins; std::string cat; };
-    struct Category { void* ins; std::string name; };
+namespace hooks::debug_menu 
+{
+    struct Button 
+    {
+        void* ins; std::string cat; 
+    };
+    struct Category 
+    { 
+        void* ins; std::string name; 
+    };
 
     inline void* g_debugMenu = nullptr;
     inline void* g_dButton = nullptr;
