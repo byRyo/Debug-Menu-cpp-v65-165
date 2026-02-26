@@ -6,7 +6,8 @@
 #include <hooks/debug_menu/debug_menu.hpp>
 #include <dobby.hpp>
 
-void* hack_thread(void*) {
+void* hack_thread(void*) 
+{
     utils::memory::wait_for_lib("libg.so");
 
     libg::addresses::init();
@@ -28,8 +29,10 @@ void* hack_thread(void*) {
 }
 
 __attribute__((constructor))
-void init() {
+void init() 
+{
     pthread_t t;
     pthread_create(&t, nullptr, hack_thread, nullptr);
     pthread_detach(t);
+
 }
