@@ -2,7 +2,8 @@
 #include <cstdint>
 #include "libg/addresses.hpp"
 
-namespace libg::functions {
+namespace libg::functions 
+{
     using fn_getMovieClip = void*(*)(const char*, const char*);
     using fn_stringctor = void*(*)(void*, const char*);
     using fn_Stage_addChild = void*(*)(void*, void*);
@@ -25,7 +26,8 @@ namespace libg::functions {
     inline fn_Sprite_Sprite Sprite_Sprite;
     inline fn_setPixelSnappedXY DisplayObject_setPixelSnappedXY;
 
-    inline void init() {
+    inline void init() 
+    {
         StringTable_getMovieClip = (fn_getMovieClip) libg::addresses::StringTable_getMovieClip;
         stringctor = (fn_stringctor) libg::addresses::stringctor;
         Stage_addChild = (fn_Stage_addChild) libg::addresses::Stage_addChild;
