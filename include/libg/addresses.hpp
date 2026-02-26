@@ -2,7 +2,8 @@
 #include <cstdint>
 #include "utils/memory.hpp"
 
-namespace libg::addresses {
+namespace libg::addresses 
+{
     inline uintptr_t StringTable_getMovieClip;
     inline uintptr_t stringctor;
     inline uintptr_t Stage_addChild;
@@ -16,8 +17,10 @@ namespace libg::addresses {
     inline uintptr_t DisplayObject_setPixelSnappedXY;
     inline uintptr_t CustomButton_buttonPressed;
 
-    inline void init() {
-        auto rebase = [](uintptr_t offset) {
+    inline void init() 
+    {
+        auto rebase = [](uintptr_t offset) 
+        {
             return utils::memory::rebase("libg.so", offset);
         };
         dropGUIContainer_DropGUIContainer = rebase(0x56BD18); // v65
