@@ -9,8 +9,10 @@
 #include "libg/functions.hpp"
 #include "libg/addresses.hpp"
 
-namespace hooks::debug_menu {
-    inline void initMenu(void* instance) {
+namespace hooks::debug_menu 
+{
+    inline void initMenu(void* instance) 
+    {
         libg::functions::Sprite_Sprite(instance, 1);
         void* mc = libg::functions::StringTable_getMovieClip("sc/debug.sc", "debug_menu");
         libg::functions::dropGUIContainer_DropGUIContainer(instance, mc);
@@ -19,19 +21,23 @@ namespace hooks::debug_menu {
         libg::functions::Stage_addChild(stagePtr(), instance);
     }
 
-    inline void setTitle(void* instance, const char* title) {
+    inline void setTitle(void* instance, const char* title) 
+    {
         libg::functions::movieClipsettext(instance, "title", makeScPtr(title));
     }
 
-    inline void removeMenu() {
+    inline void removeMenu() 
+    {
         closeCategoryAndButtons();
         hideObject(g_debugMenu);
         g_debugMenu = nullptr;
         g_menuOpened = false;
     }
 
-    inline void openMenu() {
-        if (!g_debugMenu) {
+    inline void openMenu() 
+    {
+        if (!g_debugMenu) 
+        {
             g_debugMenu = malloc(1000);
             initMenu(g_debugMenu);
             setTitle(g_debugMenu, "Debug Menu");
@@ -70,13 +76,16 @@ namespace hooks::debug_menu {
         libg::functions::Stage_addChild(stage, g_debugMenu);
 
         int y = 0;
-        for (auto& c : g_categories) {
+        for (auto& c : g_categories) 
+        {
             showObject(c.ins, getX(g_debugMenu) - 150.f, (y * 55.f) + 100.f);
             libg::functions::Stage_addChild(stage, c.ins);
             y++;
         }
-        for (auto& b : g_buttons) {
-            if (b.cat.empty()) {
+        for (auto& b : g_buttons) 
+        {
+            if (b.cat.empty()) 
+            {
                 showObject(b.ins, getX(g_debugMenu) - 150.f, (y * 55.f) + 100.f);
                 libg::functions::Stage_addChild(stage, b.ins);
                 y++;
