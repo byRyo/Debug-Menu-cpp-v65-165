@@ -5,14 +5,17 @@
 #include <cstring>
 #include <unistd.h>
 
-namespace utils::memory {
-    inline uintptr_t get_base(const char *lib) {
+namespace utils::memory 
+{
+    inline uintptr_t get_base(const char *lib) 
+    {
         FILE *fp = fopen("/proc/self/maps", "r");
         if (!fp) return 0;
         char line[512];
         uintptr_t base = 0;
         while (fgets(line, sizeof(line), fp)) {
-            if (strstr(line, lib) && strstr(line, "r-xp")) {
+            if (strstr(line, lib) && strstr(line, "r-xp")) 
+            {
                 base = strtoull(line, nullptr, 16);
                 break;
             }
@@ -21,11 +24,13 @@ namespace utils::memory {
         return base;
     }
 
-    inline void wait_for_lib(const char *lib) {
+    inline void wait_for_lib(const char *lib) 
+    {
         while (!get_base(lib)) usleep(500000);
     }
 
-    inline uintptr_t rebase(const char *lib, uintptr_t offset) {
+    inline uintptr_t rebase(const char *lib, uintptr_t offset) 
+    {
         return get_base(lib) + offset;
     }
 }
